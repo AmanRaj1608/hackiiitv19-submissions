@@ -1,4 +1,4 @@
-<p align="center"><img src="logo.JPG" align="center" width="175"></p>
+<p align="center"><img src="logo.jpg" align="center" width="175"></p>
 <h1 align="center">Actum</h1>
 <p align="center">
   <img width="155" height="55" src="https://forthebadge.com/images/badges/built-with-love.svg">
@@ -26,7 +26,7 @@ Actum is the complete solution to ease communication between normal and especial
 Actum has a ML script running in the Django backend which will detect the gestures performed by any deaf or dumb which can be then mapped to a particular action which will be unique to that gesture.Then this gesture is passed by the backend to frontend where the text is displayed.  
 
 
-<p align="center"><img src="fact.JPG" align="center" width="375"></p>
+<p align="center"><img src="fact.jpg" align="center" width="375"></p>
 
 ### Contributors
 
