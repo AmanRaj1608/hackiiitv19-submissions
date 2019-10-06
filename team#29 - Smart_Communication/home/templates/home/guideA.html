@@ -1,260 +1,101 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
-
-
 <head>
-
     <meta charset="UTF-8">
-
-    <title>MediaCapture and Streams API</title>
-
-    <meta name="viewport" content="width=device-width">
-
-    <link rel="stylesheet" href="main.css">
-
-    <meta http-equiv="refresh" content="10"/>
-
+    <title>Person 1</title>
+    <!-- <link rel="shortcut icon" href="./logo.png"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="WebRTC getUserMedia MediaRecorder API">
+    <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <title>ActUm</title>
 </head>
 
+<style>
+    h1 {
+        margin: 50px;
+        text-align: center;
+        margin-bottom: 60px;
+    }
 
+    body {
+        width: 90%;
+        max-width: 960px;
+        margin: 0px auto;
+        background-color: rgb(71, 136, 135);
+    }
+
+    input {
+        background-color: white;
+        width: 20%;
+        height: 40px;
+        display: inline-block;
+        border-radius: 36px;
+    }
+
+    button {
+        background-color: #8842d5;
+        border: none;
+        color: white;
+        padding: 12px 24px;
+        text-decoration: none;
+        margin: 5px 4px;
+        cursor: pointer;
+    }
+
+    h3 {
+        margin-left: 20%;
+    }
+
+    table,
+    th,
+    td {
+        border: 1px solid black;
+        border-spacing: 0.5rem;
+        padding: 0.5rem;
+    }
+</style>
 
 <body>
-
-    
-
-    <h1>
-
-    from 2 user
-    </h1>
-
-
-        
- <form method="POST" action="">
-        
+    <h1>1st User</h1>
+    <form method="POST" action="">
         {% csrf_token %}
         <div>
             {{form.as_p}}
         </div>
         <button type="submit">
-            submit
+            Submit
         </button>
-</form>
-<div class="new">
-        
+    </form>
+
+    <!-- <div class="new">
         <ul class="message">
-{% for i in msg %}
-<h1>
-    {{i}}
-</h1>
-{% endfor %}
+            {% for i in msg %}
+            <h1>
+                {{i}}
+            </h1>
+            {% endfor %}
         </ul>
-        
-
-    </div> 
- 
-
-
-
-
-
-        <!-- could save to canvas and do image manipulation and saving too -->
-
-  
-
-    {% comment %} <script>
-
-
-
-        let constraintObj = {
-
-            audio: false,
-
-            video: {
-
-                facingMode: "user",
-
-                width: { min: 640, ideal: 1280, max: 1920 },
-
-                height: { min: 480, ideal: 720, max: 1080 }
-
-            }
-
-        };
-
-        // width: 1280, height: 720  -- preference only
-
-        // facingMode: {exact: "user"}
-
-        // facingMode: "environment"
-
-
-
-        //handle older browsers that might implement getUserMedia in some way
-
-        if (navigator.mediaDevices === undefined) {
-
-            navigator.mediaDevices = {};
-
-            navigator.mediaDevices.getUserMedia = function (constraintObj) {
-
-                let getUserMedia = navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
-
-                if (!getUserMedia) {
-
-                    return Promise.reject(new Error('getUserMedia is not implemented in this browser'));
-
-                }
-
-                return new Promise(function (resolve, reject) {
-
-                    getUserMedia.call(navigator, constraintObj, resolve, reject);
-
-                });
-
-            }
-
-        } else {
-
-            navigator.mediaDevices.enumerateDevices()
-
-                .then(devices => {
-
-                    devices.forEach(device => {
-
-                        console.log(device.kind.toUpperCase(), device.label);
-
-                        //, device.deviceId
-
-                    })
-
-                })
-
-                .catch(err => {
-
-                    console.log(err.name, err.message);
-
-                })
-
-        }
-
-        navigator.mediaDevices.getUserMedia(constraintObj)
-
-            .then(function (mediaStreamObj) {
-
-                //connect the media stream to the first video element
-
-                let video = document.querySelector('video');
-
-                if ("srcObject" in video) {
-
-                    video.srcObject = mediaStreamObj;
-
-                } else {
-
-                    //old version
-
-                    video.src = window.URL.createObjectURL(mediaStreamObj);
-
-                }
-
-
-
-                video.onloadedmetadata = function (ev) {
-
-                    //show in the video element what is being captured by the webcam
-
-                    video.play();
-
-                };
-
-
-
-                //add listeners for saving video/audio
-
-                let start = document.getElementById('btnStart');
-
-                let stop = document.getElementById('btnStop');
-
-                let vidSave = document.getElementById('vid2');
-
-                let mediaRecorder = new MediaRecorder(mediaStreamObj);
-
-                let chunks = [];
-
-
-
-                start.addEventListener('click', (ev) => {
-
-                    mediaRecorder.start();
-
-                    console.log(mediaRecorder.state);
-
-                })
-
-                stop.addEventListener('click', (ev) => {
-
-                    mediaRecorder.stop();
-
-                    console.log(mediaRecorder.state);
-
-                });
-
-                mediaRecorder.ondataavailable = function (ev) {
-
-                    chunks.push(ev.data);
-
-                }
-
-                mediaRecorder.onstop = (ev) => {
-
-                    let blob = new Blob(chunks, { 'type': 'video/mp4;' });
-
-                    chunks = [];
-
-                    let videoURL = window.URL.createObjectURL(blob);
-
-                    vidSave.src = videoURL;
-
-                }
-
-            })
-
-            .catch(function (err) {
-
-                console.log(err.name, err.message);
-
-            });
-
-
-
-        /*********************************
-
-        getUserMedia returns a Promise
-
-        resolve - returns a MediaStream Object
-
-        reject returns one of the following errors
-
-        AbortError - generic unknown cause
-
-        NotAllowedError (SecurityError) - user rejected permissions
-
-        NotFoundError - missing media track
-
-        NotReadableError - user permissions given but hardware/OS error
-
-        OverconstrainedError - constraint video settings preventing
-
-        TypeError - audio: false, video: false
-
-        *********************************/
-
-    </script> {% endcomment %}
+    </div> -->
+    <table>
+        <tr>
+            <th>User</th>
+            <th>Other Person</th>
+        </tr>
+        {% for i in msg %}
+        <tr>
+            <td>{{i.0}}</td>
+            <td>{{i.1}}</td>
+        </tr>
+        {% endfor %}
+    </table>
 
 </body>
-
-
+<script>
+    // var arr = "{{x}}"
+    // for (i = 0; i < arr.length; i++) {
+    //     console.log(arr[i])
+    // };
+</script>
 
 </html>
