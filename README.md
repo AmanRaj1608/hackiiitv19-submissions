@@ -1,60 +1,26 @@
 # Actum
 <img src="logo.JPG">
 
-This repository is archive of hacks created during HackIIITV 2019.
+Because Action speaks louder than Words
 
-## Requirements
+## Motive
 
-- GitHub account
-- Install [git](https://git-scm.com/) for your repsective OS.
-- Make sure you are part of IIITV organisation on GitHub, else join [here](http://getmein.glitch.me/)
+For actions to speak louder than words Actum has been designed to enhance the communication between normal and specially abled (deaf and dumb).
 
-## Few pointers
+## Why Actum?
 
-- You can make at max one commit per hour.
-- Don't close your PR.
-- No commits after Hackathon ends will be entertained.
-- It is recommended to make one commit/hour to keep your hack backed up.
-- Make sure your whole project is inside the folder of your team.
-- If you have time left, make sure you make a README.md 😉(it will help others to understand your code)
+Actum is the complete solution to ease communication between normal and especially abled person viz. deaf and dumb. Using it anyone can easily recognize gestures produced by the deaf and dumb. Now speech will no more be a restriction to interact with someone. Using it the deaf and dumb can also easily interact with someone who don’t recognize their action, so that speech is no longer a restriction for them to express their feelings. Actum also has a chat app which the deaf and dumb can use to interact with others just by their gestures.
 
-## How to submit?
+## Technologies
 
-One member from each team have to follow this instructions:
-Follow the instructions in order:
+- Django
+- Image Processing
+- Image classfication using classifier
 
-1. Fork this repository.
+## Modus Operandi
 
-2. Clone your fork, using
-    `git clone https://github.com/<your-username>/hackiiitv19-submissions.git`
+Actum has a ML script running in the Django backend which will detect the gestures performed by any deaf or dumb which can be then mapped to a particular action which will be unique to that gesture.Then this gesture is passed by the backend to frontend where the text is displayed.  
 
-3. Change Directory to `hackiiitv19-submissions`, using
-    `cd hackiiitv19-submissions`
+  
 
-4. Set remote to original repository using
-    `git remote add ups https://github.com/iiitv/hackiiitv19-submissions.git`
-
-5. Create a branch named `team#x`, where x is your team number, using
-    `git checkout -b team#x`
-
-6. Add a folder with name `team#x - {Chosen_Theme}` in root directory. Make sure your whole hack is in folder `team#x - {Chosen_Theme}`.
-
-7. Now add this folder to your staging area, using
-    `git add "team#x - {Chosen_Theme}"`
-
-8. Now commit the changes using,
-    `git commit -m "Add team#x"`
-
-9. Push the changes using,
-    `git push`
-
-10. Open a pull request: As soon as the changes will be pushed, GUI of repository's main page will show a yellow banner saying you too open a Pull request, just click on it and you are done.
-
-For making changes to PR, just keep on repeating Step 6-9.
-
-## Rules
-
-- Keep your content as original as possible.
-- It is allowed to use available softwares/packages as a module, but they can't be your project.
-
-Happy Hacking! 🖖
+<img src="fact.JPG">
