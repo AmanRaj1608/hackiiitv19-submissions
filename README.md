@@ -1,5 +1,5 @@
 # Actum
-<img src="logo.png">
+<img src="logo.jpg">
 
 This repository is archive of hacks created during HackIIITV 2019.
 
